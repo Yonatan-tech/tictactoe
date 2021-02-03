@@ -1,8 +1,38 @@
 
+let currentPlayer = "X";
+let totalTurns = 0;
+let gameEnd = false;
 
+function changePlayer() {
+  if (currentPlayer == "X"){
+  currentPlayer = "O";
+  } else{
+    currentPlayer = "X";
+  }
+}
 
+function playerWins (tile1, tile2, tile3) {
+  return ($(tile1).text() == currentPlayer && $(tile2).text() == currentPlayer && $(tile3).text() == currentPlayer)
+    
+}
 
+function verticalTiles(){
+  return playerWins("#tile1", "#tile4", "#tile7") || playerWins("#tile2", "#tile5", "#tile8") || playerWins("#tile3", "#tile6", "#tile9")
+}
 
+function horizantalTiles(){
+  return playerWins("#tile1", "#tile2", "#tile3") || playerWins("#tile4", "#tile5", "#tile6") || playerWins("#tile7", "#tile8", "#tile9")
+}
+
+function digonalTiles(){
+  return playerWins("#tile1", "#tile5", "#tile9") || playerWins("#tile3", "#tile5", "#tile7")
+}
+
+function performLogic(buttonId, tileID) {
+  
+  $(tileID).html(currentPlayer)
+  changePlayer();
+}
 
 
 $("#button1").click(function() {
