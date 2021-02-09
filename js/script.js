@@ -28,10 +28,26 @@ function digonalTiles(){
   return playerWins("#tile1", "#tile5", "#tile9") || playerWins("#tile3", "#tile5", "#tile7")
 }
 
+function numberOfTurns(){
+  totalTurns++ 
+  console.log(totalTurns);
+}
+
+function draw(){
+  console.log(numberOfTurns);
+  if (totalTurns == 9){
+    gameEnd = true;
+    $("h1").html("It's a Draw");
+    console.log("draw"); 
+  }
+}
+
 function performLogic(buttonId, tileID) {
   
   $(tileID).html(currentPlayer)
   changePlayer();
+  numberOfTurns();
+  draw();
 }
 
 
