@@ -6,18 +6,21 @@ let gameEnd = false;
 function changePlayer() {
   if (currentPlayer == "X"){
   currentPlayer = "O";
-  } else{
+  } else {
     currentPlayer = "X";
   }
 }
 
 function playerWins (tile1, tile2, tile3) {
-  return ($(tile1).text() == currentPlayer && $(tile2).text() == currentPlayer && $(tile3).text() == currentPlayer)
+  if ($(tile1).text() == currentPlayer && $(tile2).text() == currentPlayer && $(tile3).text() == currentPlayer){
+    gameEnd = true;
+    $("h1").html(currentPlayer + " Wins!");
+  }
     
 }
 
 function verticalTiles(){
-  return playerWins("#tile1", "#tile4", "#tile7") || playerWins("#tile2", "#tile5", "#tile8") || playerWins("#tile3", "#tile6", "#tile9")
+  return playerWins("#tile1", "#tile4", "#tile7") || playerWins("#tile2", "#tile5", "#tile8") || playerWins("#tile3", "#tile6", "#tile9") 
 }
 
 function horizantalTiles(){
@@ -30,24 +33,31 @@ function digonalTiles(){
 
 function numberOfTurns(){
   totalTurns++ 
-  console.log(totalTurns);
+  //console.log(totalTurns);
 }
 
 function draw(){
   console.log(numberOfTurns);
   if (totalTurns == 9){
+     $("h1").html("It's a Draw");
     gameEnd = true;
-    $("h1").html("It's a Draw");
-    console.log("draw"); 
+   
+    //console.log("draw"); 
   }
 }
 
 function performLogic(buttonId, tileID) {
-  
-  $(tileID).html(currentPlayer)
-  changePlayer();
-  numberOfTurns();
-  draw();
+
+  if (gameEnd === false) { 
+    $(tileID).html(currentPlayer)
+    numberOfTurns();
+    verticalTiles();
+    horizantalTiles();
+    digonalTiles();
+    changePlayer();
+    draw();
+   //console.log(""); 
+  }
 }
 
 
