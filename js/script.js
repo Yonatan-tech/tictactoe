@@ -15,6 +15,7 @@ function playerWins (tile1, tile2, tile3) {
   if ($(tile1).text() == currentPlayer && $(tile2).text() == currentPlayer && $(tile3).text() == currentPlayer){
     gameEnd = true;
     $("h1").html(currentPlayer + " Wins!");
+    $("h1").css("color", "#FFD700");
   }
     
 }
@@ -41,6 +42,7 @@ function draw(){
   if (totalTurns == 9){
      $("h1").html("It's a Draw");
     gameEnd = true;
+    $("h1").css("color", "#19D1C6");
    
     //console.log("draw"); 
   }
@@ -49,14 +51,17 @@ function draw(){
 function performLogic(buttonId, tileID) {
 
   if (gameEnd === false) { 
-    $(tileID).html(currentPlayer)
-    numberOfTurns();
-    verticalTiles();
-    horizantalTiles();
-    digonalTiles();
-    changePlayer();
-    draw();
-   //console.log(""); 
+    if (currentPlayer) {
+      $(tileID).html(currentPlayer)
+      numberOfTurns();
+      verticalTiles();
+      horizantalTiles();
+      digonalTiles();
+      changePlayer();
+      draw();
+     //console.log("");
+      
+    }
   }
 }
 

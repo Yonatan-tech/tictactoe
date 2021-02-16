@@ -2,6 +2,10 @@
     width:50%;
     display:flex;
     flex-wrap:wrap;
+  
+    font-family: 'Reggae One', cursive;
+    color: #9E0B16;
+
 }
 
 .tile {
@@ -15,4 +19,10 @@
 
 .bottom {
     border-bottom: 1px solid black;
+}
+
+h1 {
+font-family: 'Indie Flower', cursive;
+font-size: 70px;
+color: black;
 }
